@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/core";
 import { Dimensions, FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { auth } from "../services/firebase.js";
