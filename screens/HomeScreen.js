@@ -2,7 +2,6 @@ import { useNavigation } from "@react-navigation/core";
 import { Dimensions, FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { auth } from "../services/firebase.js";
-import { signOut } from "firebase/auth";
 import { getFirestore, collection, query, orderBy, limit, addDoc, serverTimestamp } from "firebase/firestore";
 import app from "../services/firebase.js";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -11,23 +10,11 @@ const screenWidth = Dimensions.get("window").width;
 
 const HomeScreen = () => {
   // declare logic here
-  const navigation = useNavigation();
   const db = getFirestore(app);
   const journalsRef = collection(db, "journals");
   const journalsQuery = query(journalsRef, orderBy("createdAt"), limit(25));
   const [journals] = useCollectionData(journalsQuery, { idField: "id" });
   const [newJournalEntry, setNewJournalEntry] = useState("");
-
-  const handleSignOut = () => {
-    signOut(auth)
-      .then(() => {
-        navigation.replace("Login");
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        // An error happened.
-      });
-  };
 
   const addJournal = async () => {
     if (newJournalEntry.trim() !== "") {
@@ -48,10 +35,6 @@ const HomeScreen = () => {
       <TouchableOpacity onPress={addJournal} style={styles.button}>
         <Text style={styles.buttonText}>Tilføj</Text>
       </TouchableOpacity>
-      <Text>Email: {auth.currentUser?.email}</Text>
-      <TouchableOpacity onPress={handleSignOut} style={styles.signOutButton}>
-        <Text style={styles.buttonText}>Sign Out</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -71,6 +54,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: "center",
     margin: 10,
+    marginBottom: 40,
   },
   buttonOutline: {
     backgroundColor: "white",
@@ -98,15 +82,6 @@ const styles = StyleSheet.create({
     width: screenWidth * 0.9,
     paddingHorizontal: 15,
     paddingVertical: 10,
-    marginTop: 5,
-  },
-  signOutButton: {
-    backgroundColor: "#E63946",
-    width: "60%",
-    padding: 15,
-    borderRadius: 50,
-    alignItems: "center",
-    marginBottom: 40,
     marginTop: 5,
   },
 });

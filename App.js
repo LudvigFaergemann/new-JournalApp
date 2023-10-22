@@ -24,7 +24,7 @@ export default function App() {
         {user ? (
           <>
             <Drawer.Screen options={{ title: "Min dagbog" }} name="Home" component={HomeScreen} />
-            <Drawer.Screen name="Profile" component={ProfileScreen} />
+            <Drawer.Screen options={{ title: "Profil" }} name="Profile" component={ProfileScreen} />
             <Drawer.Screen name="Feedback" component={FeedbackScreen} />
           </>
         ) : (
