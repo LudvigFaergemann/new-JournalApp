@@ -17,7 +17,7 @@ export default function App() {
           name="Login"
           component={LoginScreen}
         />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen options={{ title: 'Min dagbog'}}name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
