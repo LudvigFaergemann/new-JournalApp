@@ -33,7 +33,7 @@ const FeedbackScreen = () => {
         numberOfLines={5}
       ></TextInput>
       <TouchableOpacity onPress={addFeedback} style={styles.button}>
-        <Text style={styles.buttonText}>Tilføj</Text>
+        <Text style={styles.buttonText}>Send</Text>
       </TouchableOpacity>
     </View>
   );

@@ -10,6 +10,7 @@ import FeedbackScreen from "./screens/FeedbackScreen";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import CameraScreen from "./screens/CameraScreen";
 
 // Navigation
 const Drawer = createDrawerNavigator();
@@ -26,6 +27,7 @@ export default function App() {
             <Drawer.Screen options={{ title: "Min dagbog" }} name="Home" component={HomeScreen} />
             <Drawer.Screen options={{ title: "Profil" }} name="Profile" component={ProfileScreen} />
             <Drawer.Screen name="Feedback" component={FeedbackScreen} />
+            <Drawer.Screen name="Camera" component={CameraScreen} />
           </>
         ) : (
           <>
