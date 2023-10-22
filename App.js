@@ -1,24 +1,38 @@
 //imports
 import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { getAuth } from "firebase/auth";
+
+// Screens
+import FeedbackScreen from "./screens/FeedbackScreen";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 
 // Navigation
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
+  const auth = getAuth();
+  const [user] = useAuthState(auth);
+
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Login"
-          component={LoginScreen}
-        />
-        <Stack.Screen options={{ title: 'Min dagbog'}}name="Home" component={HomeScreen} />
-      </Stack.Navigator>
+      <Drawer.Navigator>
+        {user ? (
+          <>
+            <Drawer.Screen options={{ title: "Min dagbog" }} name="Home" component={HomeScreen} />
+            <Drawer.Screen name="Profile" component={ProfileScreen} />
+            <Drawer.Screen name="Feedback" component={FeedbackScreen} />
+          </>
+        ) : (
+          <>
+            <Drawer.Screen options={{ title: "JournalApp" }} name="Log in" component={LoginScreen} />
+          </>
+        )}
+      </Drawer.Navigator>
     </NavigationContainer>
   );
-};
+}
