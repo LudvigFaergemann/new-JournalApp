@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: "center",
     margin: 10,
-    marginBottom: 40,
+    marginBottom: 150,
   },
   buttonOutline: {
     backgroundColor: "white",

@@ -27,7 +27,7 @@ export default function App() {
             <Drawer.Screen options={{ title: "Min dagbog" }} name="Home" component={HomeScreen} />
             <Drawer.Screen options={{ title: "Profil" }} name="Profile" component={ProfileScreen} />
             <Drawer.Screen name="Feedback" component={FeedbackScreen} />
-            <Drawer.Screen name="Camera" component={CameraScreen} />
+            <Drawer.Screen options={{ title: "Billede upload" }} name="Camera" component={CameraScreen} />
           </>
         ) : (
           <>
