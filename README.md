@@ -1,9 +1,9 @@
 # new-JournalApp
 
 ## Configuration
-add your own firebase config details in the ./services/firebase.js file
-run npm install
-run npx expo start
+add your own firebase config details in the ./services/firebase.js file.
+run 'npm install'.
+run 'npx expo start'.
 
 The app should then be accesible in Expo Go
 
